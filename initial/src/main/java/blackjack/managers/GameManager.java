@@ -1,5 +1,6 @@
 package blackjack.managers;
 
+import blackjack.model.ActionResult;
 import blackjack.model.Game;
 import blackjack.model.Player;
 
@@ -73,6 +74,8 @@ public class GameManager extends HashMap<String, Game> {
 
     }
 
-
+    public ActionResult doAction(String Action, String playerID, String room){
+        return null;
+    }
 
 }
