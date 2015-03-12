@@ -1,5 +1,6 @@
 package blackjack.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,9 +18,30 @@ public class Player {
     private float bet ;
     private List<Card> cards ;
 
+    public Player(){
+        cards = new ArrayList<>();
+    }
+
     public int calculateScore()
     {
-        return 0 ;
+        int countAs = 0, score = 0;
+        // Calcul le score de toutes les cartes sans les as
+        for(int i = 0 ; i < cards.size() ; i++){
+            if(cards.get(i).getValue().equals("As")){
+               countAs++;
+            } else {
+                score += cards.get(i).getScore();
+            }
+        }
+        // Pour chaque as on calcul le meilleur score en fonction de la valeur de l'as (1 ou 11)
+        for(int i = 0 ; i < countAs ; i++){
+            if(score + 11 <= 21){
+                score += 11;
+            } else {
+                score++;
+            }
+        }
+        return score ;
     }
 
     @Override

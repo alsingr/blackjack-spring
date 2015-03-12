@@ -28,8 +28,6 @@ public class GameService {
     private final AtomicLong counter = new AtomicLong();
 
     private final GameManager gameManager = new GameManager() ;
-    private ArrayList<Player> players = new ArrayList<Player>() ;
-    private HashMap<String, Game> games;
 
     @RequestMapping("/play/{room}/players")
     List<Player> players(@PathVariable String room)
