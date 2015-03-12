@@ -1,11 +1,38 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-<p th:text="'Hello, ' + ${name} + '!'" />
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" th:href="@{/css/blackjack.css}"  href="../resources/css/blackjack.css" />
+		<title> Blackjack </title>
 
-</body>
+	</head>
+	
+	<body>
+		<div id="maPage">
+			<div class="cac">
+				<div id="table">
+					<div id="ZoneCartesCroupier"> <img src="" class="unCarte"/> </div>
+
+					<div id="ZonzCartesJoueur"></div>
+
+					<div id="zoneJeton"></div>
+				</div>
+				
+				<div id="bouttons">
+					<input type="button" value="miser" name="miser"/>
+					<input type="button" value="doubler" name="doubler"/>
+					<input type="button" value="carte" name="carte"/>
+					<input type="button" value="split" name="split"/>
+					<input type="button" value="rester" name="rester"/>
+					<input type="button" value="acheter" name="acheter"/>
+				</div>
+			</div>
+
+			<div class="cac">
+				<div id="zoneAutresJoueur"> autres joueurs </div>
+			</div>
+			
+		</div>
+		
+	</body>
 </html>

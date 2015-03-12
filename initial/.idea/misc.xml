@@ -27,21 +27,18 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
-  <component name="EntryPointsManager">
-    <entry_points version="2.0" />
-  </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="1426080221000" />
+        <entry key="$PROJECT_DIR$" value="1426194159000" />
         <entry key="$USER_HOME$/gs-serving-web-content/initial" value="1426080221000" />
       </map>
     </option>
   </component>
-  <component name="IdProvider" IDEtalkID="4631CF5060DE89977595CCB417DA0C0F" />
+  <component name="IdProvider" IDEtalkID="3F42ABF1BFFF88E0500AF93EAF81A202" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
