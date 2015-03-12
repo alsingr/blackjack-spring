@@ -18,7 +18,7 @@ public class GameController {
     public String playInRoom(Model model)
     {
         model.addAttribute("name", "Welcome to the game");
-        return "game" ;
+        return "index" ;
     }
 
 }

@@ -1,6 +1,7 @@
 package blackjack.services;
 
 import blackjack.managers.GameManager;
+import blackjack.model.ActionResult;
 import blackjack.model.Game;
 import blackjack.model.Player;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,12 @@ public class GameService {
     private final AtomicLong counter = new AtomicLong();
 
     private final GameManager gameManager = new GameManager() ;
+
+    @RequestMapping("/play/{room}")
+    String getView(@PathVariable String room){
+        gameManager.createRoomIfNotExist(room);
+        return "game";
+    }
 
     @RequestMapping("/play/{room}/players")
     List<Player> players(@PathVariable String room)
@@ -58,4 +65,11 @@ public class GameService {
         return gameManager.addPlayerToRoom(room);
     }
 
+    @RequestMapping("/play/{room}/actions")
+    ActionResult doAction( @RequestParam(value = "id", defaultValue = "0") String playerId,
+                      @RequestParam(value = "actions", defaultValue = "NONE") String action,
+                      @PathVariable String room)
+    {
+        return gameManager.doAction(action, playerId, room);
+    }
 }
