@@ -2,6 +2,7 @@ package blackjack.managers;
 
 import blackjack.model.*;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +16,9 @@ public class GameManager extends HashMap<String, Game> {
 
     private final AtomicLong playerCounter = new AtomicLong();
     private final AtomicLong gameCounter = new AtomicLong();
+
+    private static final SecureRandom random = new SecureRandom();
+
     private int timeToPlay = 60 * 1000; // temps de jeu : 1 min
     private Long finishTimeRound; // Temps de fin du round
 
@@ -171,8 +175,7 @@ public class GameManager extends HashMap<String, Game> {
     }
 
     private Card getCard(){
-        //TODO faire le tirage de carte
-        return null;
+        return new Card(randomEnum(SignOfCard.class), randomEnum(ValueOfCard.class));
     }
 
     private boolean isEndOfRound(String roomName, boolean finish){
@@ -219,5 +222,11 @@ public class GameManager extends HashMap<String, Game> {
         //TODO remise à zéro des joueurs
 
         //TODO redirection vers la page de résultat du jeux
+    }
+
+
+    private  <T extends Enum<?>> T randomEnum(Class<T> c){
+        int i = random.nextInt(c.getEnumConstants().length);
+        return c.getEnumConstants()[i];
     }
 }
