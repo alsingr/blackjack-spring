@@ -1,9 +1,6 @@
 package blackjack.managers;
 
-import blackjack.model.ActionResult;
-import blackjack.model.ActionValue;
-import blackjack.model.Game;
-import blackjack.model.Player;
+import blackjack.model.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,64 +89,33 @@ public class GameManager extends HashMap<String, Game> {
         ActionValue action = ActionValue.valueOf(actionName);
         if(action == null && player == null)
             return null;
+
         //Mise à jours du compte à rebours
         if(finishTimeRound == null) finishTimeRound = new Date().getTime() + timeToPlay;
+
         //Indique si le round est terminer ou non
         boolean finish = isFinish(new Date().getTime());
+
         //Mise à jour de l'état du joueur si il n'a pas d'état
-        //TODO pour chaque action rajouter l'exuction de l'etat
         if(!finish && player.getEtat().equals(ActionValue.NONE)){
             if(ActionValue.Card.equals(action)){
-                player.setEtat(action);
                 doCard(player);
             } else if(ActionValue.Split.equals(action)){
-                if(player.havePair()) {
-                    player.setEtat(action);
-                    doSplit();
-                }
+                doSplit(player);
             } else if(ActionValue.Abort.equals(action)){
-                if(player.getScore() <= 21) {
-                    player.setEtat(ActionValue.Stop);
-                    doStop();
-                }
-                else {
-                    player.setEtat(action);
-                    doAbort();
-                }
-
+                doAbort(player);
             } else if(ActionValue.Stop.equals(action)){
-                player.setEtat(action);
-                doStop();
+                doStop(player);
             } else if(ActionValue.Double.equals(action)) {
-                //todo a faire
-                doDouble();
+                doDouble(player);
             }
         }
 
-        //Vérifie si tous les joueurs ont finis de jouer
-        //Si le temps est écoulé ont leur met l'état STOP
-        boolean allFinish = true;
-        for(int i = 1 ; i < getPlayers(roomName).size() ; i++){
-            if(finish && getPlayers(roomName).get(i).getEtat().equals(ActionValue.NONE))
-                getPlayers(roomName).get(i).setEtat(ActionValue.Stop);
-            else if(!finish && getPlayers(roomName).get(i).getEtat().equals(ActionValue.NONE))
-                allFinish = false;
+        if(isEndOfRound(roomName, finish)){
+            endOfRound(roomName);
         }
-
-        //Si tous le monde à finis ou que le temps est écoulé
-        if(allFinish){
-            tourCroupier();
-
-            //mise à jours des états des joueurs à NONE en fonction de leurs états
-            ActionValue etatJoueur;
-            for(int i = 1 ; i < getPlayers(roomName).size() ; i++){
-                etatJoueur = getPlayers(roomName).get(i).getEtat();
-                if(!ActionValue.Abort.equals(etatJoueur) || !ActionValue.Stop.equals(etatJoueur))
-                    getPlayers(roomName).get(i).setEtat(ActionValue.NONE);
-            }
-
-            //mise à jours du temps
-            finishTimeRound = new Date().getTime() + timeToPlay;
+        if(isEndOfGame(roomName)){
+            endOfGame();
         }
         return null;
     }
@@ -160,28 +126,92 @@ public class GameManager extends HashMap<String, Game> {
         return false;
     }
 
-    private void tourCroupier(){
-        //TODO faire le tour du croupier
+    private void tourCroupier(Player croupier){
+        if(croupier.getScore() < 17){
+            croupier.getCards().add(this.getCard());
+        } else {
+            croupier.setEtat(ActionValue.Stop);
+        }
     }
 
     private void doCard(Player player){
-        //TODO donnez une carte au joueur
+        player.setEtat(ActionValue.Card);
+        player.getCards().add(this.getCard());
+        if(player.getScore() == 21) {
+            player.setEtat(ActionValue.Stop);
+        } else if(player.getScore() > 21){
+            player.setEtat(ActionValue.Abort);
+        }
     }
 
-    private void doSplit(){
-        //TODO séparer en 2 le tas du joueurs
+    private void doSplit(Player player){
+        if(player.havePair()){
+            player.setEtat(ActionValue.Split);
+            //TODO séparer en 2 le tas du joueurs
+        }
     }
 
-    private void doStop(){
-        //TODO mettre à jours le canPlay du joueur
+    private void doStop(Player player){
+        player.setEtat(ActionValue.Stop);
+        player.setCanPlay(false);
     }
 
-    private void doAbort(){
-        //TODO mettre à jours le canPlay du joueur
+    private void doAbort(Player player){
+        if(player.getScore() <= 21) {
+            doStop(player);
+        }
+        else {
+            player.setEtat(ActionValue.Abort);
+        }
     }
 
-    private void doDouble(){
+    private void doDouble(Player player){
+        player.setEtat(ActionValue.Double);
         //TODO VOIR RÈGLE BLACKJACK
     }
 
+    private Card getCard(){
+        //TODO faire le tirage de carte
+        return null;
+    }
+
+    private boolean isEndOfRound(String roomName, boolean finish){
+        for(int i = 1 ; i < getPlayers(roomName).size() ; i++){
+            if(finish && getPlayers(roomName).get(i).getEtat().equals(ActionValue.NONE))
+                getPlayers(roomName).get(i).setEtat(ActionValue.Stop);
+            else if(!finish && getPlayers(roomName).get(i).getEtat().equals(ActionValue.NONE))
+                return false;
+        }
+        return true;
+    }
+
+    private void endOfRound(String roomName){
+        tourCroupier(getPlayers(roomName).get(0));
+
+        //mise à jours des états des joueurs sauf croupier à NONE en fonction de leurs états
+        ActionValue etatJoueur;
+        for(int i = 1 ; i < getPlayers(roomName).size() ; i++){
+            etatJoueur = getPlayers(roomName).get(i).getEtat();
+            if(!ActionValue.Abort.equals(etatJoueur) || !ActionValue.Stop.equals(etatJoueur))
+                getPlayers(roomName).get(i).setEtat(ActionValue.NONE);
+        }
+
+        //mise à jours du temps
+        finishTimeRound = new Date().getTime() + timeToPlay;
+    }
+
+    private boolean isEndOfGame(String roomName){
+        //Fin du jeu = tous les joueurs ont arréter de jouer (etat STOP ou ABORT), croupier inclus
+        ActionValue etatJoueur;
+        for(int i = 0 ; i < getPlayers(roomName).size() ; i++){
+            etatJoueur = getPlayers(roomName).get(i).getEtat();
+            if(!ActionValue.Abort.equals(etatJoueur) || !ActionValue.Stop.equals(etatJoueur))
+                return false;
+        }
+        return true;
+    }
+
+    private void endOfGame(){
+        //TODO faire la fin du jeu
+    }
 }
