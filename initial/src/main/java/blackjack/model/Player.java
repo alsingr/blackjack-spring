@@ -18,8 +18,19 @@ public class Player {
     private float bet ;
     private List<Card> cards ;
 
+    private ActionValue etat;
+
     public Player(){
         cards = new ArrayList<>();
+        etat = ActionValue.NONE;
+    }
+
+    public ActionValue getEtat() {
+        return etat;
+    }
+
+    public void setEtat(ActionValue etat) {
+        this.etat = etat;
     }
 
     public int calculateScore()
@@ -42,6 +53,14 @@ public class Player {
             }
         }
         return score ;
+    }
+
+    public boolean havePair(){
+        if(cards.size() != 2)
+            return false;
+        if(!cards.get(0).getValue().equals(cards.get(1).getValue()))
+            return false;
+        return true;
     }
 
     @Override

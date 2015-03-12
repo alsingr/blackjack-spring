@@ -6,6 +6,10 @@ package blackjack.model;
 public enum ActionValue {
     NONE,
     Card,
-    Bet,
-    Split
+    Stop,
+    Double,
+    Abort,
+
+    Split;
+
 }

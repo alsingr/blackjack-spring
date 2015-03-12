@@ -30,6 +30,12 @@ public class GameService {
 
     private final GameManager gameManager = new GameManager() ;
 
+    @RequestMapping("/play/{room}")
+    String getView(@PathVariable String room){
+        gameManager.createRoomIfNotExist(room);
+        return "game";
+    }
+
     @RequestMapping("/play/{room}/players")
     List<Player> players(@PathVariable String room)
     {
