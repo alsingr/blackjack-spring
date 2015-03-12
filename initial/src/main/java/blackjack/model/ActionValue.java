@@ -9,7 +9,6 @@ public enum ActionValue {
     Stop,
     Double,
     Abort,
-
     Split;
 
 }
