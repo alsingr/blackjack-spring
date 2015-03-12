@@ -19,9 +19,9 @@ public class VegetablesService {
 
     private final AtomicLong counter = new AtomicLong();
 
-    //The @RequestMapping annotation ensures that HTTP requests to /animal are mapped to the animal() method.
-    @RequestMapping("/animal")
-    public Vegetable animal(@RequestParam(value="name", defaultValue="carrot") String vegetableName) {
+    //The @RequestMapping annotation ensures that HTTP requests to /vegetable are mapped to the vegetable() method.
+    @RequestMapping("/vegetable")
+    public Vegetable vegetable(@RequestParam(value = "name", defaultValue = "carrot") String vegetableName) {
 
         //Returning a new instance of the Vegetable class
         //The object data will be written directly to the HTTP response as JSON.
@@ -29,4 +29,6 @@ public class VegetablesService {
         return new Vegetable(counter.incrementAndGet(),
                vegetableName);
     }
+
+
 }

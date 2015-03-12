@@ -1,4 +1,4 @@
-package blackjack;
+package blackjack.controllers;
 
 import blackjack.model.User;
 import org.springframework.stereotype.Controller;
