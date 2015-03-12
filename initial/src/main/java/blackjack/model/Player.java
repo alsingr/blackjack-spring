@@ -22,7 +22,10 @@ public class Player {
         return 0 ;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        return ((obj!=null) && (obj instanceof Player) && (this.id.equals(((Player) obj).getId())));
+    }
 
     public String getId() {
         return id;

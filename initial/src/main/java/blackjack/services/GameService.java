@@ -44,7 +44,20 @@ public class GameService {
         //Returning a new instance of the Vegetable class
         //The object data will be written directly to the HTTP response as JSON.
         //you don’t need to do this conversion manually
-        return players.get(Integer.valueOf(playerId));
+
+        return gameManager.getPlayer(room, playerId);
+    }
+
+    /**
+     * Subcribe a player to a game
+     * @param room
+     * @return Player
+     */
+
+    @RequestMapping("/play/{room}/subscribe")
+    Player addPlayer( @PathVariable String room)
+    {
+        return gameManager.addPlayerToRoom(room);
     }
 
 }

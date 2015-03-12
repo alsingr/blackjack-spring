@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class GameController {
 
+
     @RequestMapping("/play")
     public String playInRoom(Model model)
     {
