@@ -21,7 +21,7 @@ public class Player {
     private ActionValue etat;
 
     public Player(){
-        cards = new ArrayList<>();
+        cards = new ArrayList<Card>();
         etat = ActionValue.NONE;
     }
 
