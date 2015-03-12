@@ -212,6 +212,12 @@ public class GameManager extends HashMap<String, Game> {
     }
 
     private void endOfGame(){
-        //TODO faire la fin du jeu
+        //TODO statistique partie
+
+        //TODO mise à jours argent joueur
+
+        //TODO remise à zéro des joueurs
+
+        //TODO redirection vers la page de résultat du jeux
     }
 }
