@@ -19,7 +19,7 @@
 				</div>
 				
 				<div id="bouttons">
-					<input type="button" value="miser" name="miser"/>
+					<input type="button" value="miser" name="miser" onclick="launchQuery()"/>
 					<input type="button" value="doubler" name="doubler"/>
 					<input type="button" value="carte" name="carte"/>
 					<input type="button" value="split" name="split"/>
@@ -31,8 +31,9 @@
 			<div class="cac">
 				<div id="zoneAutresJoueur"> autres joueurs </div>
 			</div>
-			
 		</div>
 		
+		<script th:src="@{/js/jquery.js}" src="../resources/js/jquery.js"></script>
+		<script th:src="@{/js/blackjack.js}" src="../resources/js/blackjack.js"></script>
 	</body>
 </html>
