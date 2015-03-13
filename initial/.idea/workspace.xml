@@ -7,16 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2875fe5-7eba-4ed8-ba00-3a846ec0e165" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/blackjack/model/Card.class" afterPath="$PROJECT_DIR$/build/classes/main/blackjack/model/Card.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/blackjack/managers/GameManager.class" afterPath="$PROJECT_DIR$/build/classes/main/blackjack/managers/GameManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/blackjack/services/GameService.class" afterPath="$PROJECT_DIR$/build/classes/main/blackjack/services/GameService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/1.11/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/1.11/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/1.11/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/1.11/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/1.11/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/1.11/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/libs/gs-serving-web-content-0.1.0.jar.original" afterPath="$PROJECT_DIR$/build/libs/gs-serving-web-content-0.1.0.jar.original" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/libs/gs-serving-web-content-0.1.0.jar" afterPath="$PROJECT_DIR$/build/libs/gs-serving-web-content-0.1.0.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/1.11/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/1.11/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/blackjack/model/Card.java" afterPath="$PROJECT_DIR$/src/main/java/blackjack/model/Card.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/game.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/game.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="initial.iws" />
@@ -44,11 +41,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GameService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="game.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/game.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="990">
+              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="62" max-vertical-offset="1485">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/services/GameService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66334164" vertical-offset="559" max-vertical-offset="960">
-              <caret line="73" column="15" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="460" max-vertical-offset="960">
+              <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActionResult.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/ActionResult.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -59,7 +86,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="3555">
               <caret line="129" column="31" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#5114#5115#0" expanded="false" />
+                <element signature="e#5206#5207#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,22 +100,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="720">
               <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#235#246#0" expanded="true" />
-                <element signature="e#287#288#0" expanded="true" />
-                <element signature="e#319#320#0" expanded="true" />
-                <element signature="e#369#370#0" expanded="true" />
-                <element signature="e#411#412#0" expanded="true" />
-                <element signature="e#450#451#0" expanded="true" />
-                <element signature="e#485#486#0" expanded="true" />
-                <element signature="e#541#542#0" expanded="true" />
-                <element signature="e#589#590#0" expanded="true" />
-                <element signature="e#630#631#0" expanded="true" />
-                <element signature="e#658#659#0" expanded="true" />
-                <element signature="e#709#710#0" expanded="true" />
-                <element signature="e#743#744#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,9 +110,17 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="139" max-vertical-offset="540">
               <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/controllers/GameController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="49" max-vertical-offset="450">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,17 +128,17 @@
       <file leaf-file-name="ItemValue.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/ItemValue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+            <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="195">
               <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Card.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/Card.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+            <state vertical-scroll-proportion="0.2244389" vertical-offset="15" max-vertical-offset="765">
               <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
               <folding />
             </state>
@@ -443,7 +467,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/resources/ressources/js/css/img/main.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/game.html" />
         <option value="$PROJECT_DIR$/src/main/resources/resources/css/blackjack.css" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/main/java/blackjack/services/GameService.java" />
@@ -452,6 +475,7 @@
         <option value="$PROJECT_DIR$/src/main/java/blackjack/model/Card.java" />
         <option value="$PROJECT_DIR$/src/main/java/blackjack/model/Response.java" />
         <option value="$PROJECT_DIR$/src/main/java/blackjack/services/ResponseService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/game.html" />
       </list>
     </option>
   </component>
@@ -488,6 +512,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -521,6 +546,92 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -580,10 +691,69 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blackjack" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blackjack" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -605,6 +775,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/resources/js" />
       <recent name="$PROJECT_DIR$/src/main/resources/resources/css" />
       <recent name="$PROJECT_DIR$/src/main/resources/templates" />
       <recent name="$PROJECT_DIR$/src/main/resources/resources/img" />
@@ -744,6 +915,11 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
@@ -915,11 +1091,12 @@
       <workItem from="1426198471604" duration="1859000" />
       <workItem from="1426200615817" duration="19000" />
       <workItem from="1426234963151" duration="2442000" />
+      <workItem from="1426240911765" duration="3165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4320000" />
+    <option name="totallyTimeSpent" value="7485000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="732" extended-state="6" />
@@ -982,6 +1159,58 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/services/GameService.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="960">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/managers/GameManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="3555">
+          <caret line="129" column="31" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#5114#5115#0" expanded="false" />
+            <element signature="e#5206#5207#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="720">
+          <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/services/ResponseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="139" max-vertical-offset="540">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/ItemValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="195">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="765">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/services/GameService.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="960">
           <caret line="73" column="15" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
           <folding />
@@ -992,7 +1221,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3555">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#5114#5115#0" expanded="false" />
+            <element signature="e#5206#5207#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1052,19 +1285,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="60" max-vertical-offset="645">
-          <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/managers/GameManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="3555">
           <caret line="129" column="31" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#5114#5115#0" expanded="false" />
+            <element signature="e#5206#5207#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1076,34 +1305,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/Response.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="720">
           <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#235#246#0" expanded="true" />
-            <element signature="e#287#288#0" expanded="true" />
-            <element signature="e#319#320#0" expanded="true" />
-            <element signature="e#369#370#0" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <element signature="e#450#451#0" expanded="true" />
-            <element signature="e#485#486#0" expanded="true" />
-            <element signature="e#541#542#0" expanded="true" />
-            <element signature="e#589#590#0" expanded="true" />
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-            <element signature="e#709#710#0" expanded="true" />
-            <element signature="e#743#744#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1111,16 +1317,62 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="139" max-vertical-offset="540">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/resources/js/jquery-1.11.2.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/controllers/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="49" max-vertical-offset="450">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/game.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="990">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="62" max-vertical-offset="1485">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/services/GameService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66334164" vertical-offset="559" max-vertical-offset="960">
-          <caret line="73" column="15" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="460" max-vertical-offset="960">
+          <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/ActionResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/blackjack/model/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2244389" vertical-offset="15" max-vertical-offset="765">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
           <folding />
         </state>
       </provider>

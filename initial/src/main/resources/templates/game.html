@@ -3,7 +3,30 @@
 	<head>
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" th:href="@{/css/blackjack.css}"  href="../resources/css/blackjack.css" />
+		<script th:src="@{/js/jquery-1.11.2.min.js}" src="../resources/js/jquery-1.11.2.min.js"></script>
 		<title> Blackjack </title>
+
+		<script type="application/javascript">
+			var player = {} ;
+			if( player)
+			$.ajax({
+				type: 'GET',
+				url: '/play/room/subscribe',
+				success: function(data) {
+					player = data ;
+
+					alert(player.id);
+					alert(player.score);
+
+				},
+				error: function() {
+					alert('La requête n\'a pas abouti');
+				}
+			});
+
+
+
+		</script>
 
 	</head>
 	
