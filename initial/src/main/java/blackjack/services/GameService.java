@@ -66,4 +66,11 @@ public class GameService {
     {
         return gameManager.doAction(action, playerId, room);
     }
+
+    @RequestMapping("/play/{room}/bet")
+    Player playerBet(@RequestParam(value="bet", defaultValue = "0") float bet,
+                     @RequestParam(value = "id", defaultValue = "0") String playerId,
+                     @PathVariable String room){
+        return gameManager.playerBet(room, playerId, bet);
+    }
 }

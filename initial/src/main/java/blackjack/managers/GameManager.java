@@ -124,6 +124,14 @@ public class GameManager extends HashMap<String, Game> {
         return null;
     }
 
+    public Player playerBet(String roomName, String playerID, float bet){
+        Player player = getPlayer(roomName, playerID);
+        if(player != null && bet > 0 && player.getBet() == 0){
+            player.setBet(bet);
+        }
+        return player;
+    }
+
     private boolean isFinish(long time){
         if(finishTimeRound != null && finishTimeRound < time)
             return true;
