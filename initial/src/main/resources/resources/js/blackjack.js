@@ -12,12 +12,38 @@ $(document).ready(Onload);
 
 function addCard(id, card){
 	var cardName = card.sign + '_' + card.value + '.png';
-	alert(cardName);
-	alert('#' + id);
+	//alert(cardName);
+	//alert('#' + id);
+
 	$("#" + id).append('<img th:src="@{/img/' + cardName + '}" src="../img/' + cardName + '" class="uneCarte">');
 }
 
+function majCarteJoueur(){
+	for(var i = 0 ; i < player.cards.length ; i++)
+	addCard('ZoneCartesJoueur', player.cards[i]);
+}
+function majCarteCroupier(){
+	for(var i = 0 ; i < players[0].cards.length ; i++)
+	addCard('ZoneCartesCroupier', players[0].cards[i]);
+}
+function majMise()
+{
+}
+function displayPlayerInfo()
+{
+	$("#zoneScore").text('Score : ' + player.score );	
+	$("#zoneGain").text ( 'Gain : ' + player.gain) ;
+	$("#zoneMise").text ('Mise : ' + player.bet );
 
+	if(player.score >21)
+	{
+
+	}
+
+	$('#ZoneCartesJoueur').text('');
+	for(var i = 0 ; i < player.cards.length ; i++)
+		addCard('ZoneCartesJoueur', player.cards[i]);
+}
 
 
 function Onload ()
@@ -41,6 +67,14 @@ function Onload ()
 		});
 	});
 
+	updateView();
+}
+
+function updateView()
+{
+	setInterval(function() {
+		initPlayers();
+}, 5000);
 }
 
 function initPlayer(){
@@ -50,9 +84,8 @@ function initPlayer(){
 		dataType: 'json', // Ou text, ou html
 		success: function(data) {
 			player = data;
+			displayPlayerInfo();
 			initPlayers();
-
-
 		},
 		error: function() {
 			alert('La requête n\'a pas abouti'); 
@@ -67,7 +100,9 @@ function majPlayer(){
 		data: 'id=' + player.id,
 		dataType: 'json', // Ou text, ou html
 		success: function(data) {
-			player = data; 
+			player = data;
+			displayPlayerInfo();
+
 			$('#ZoneCartesJoueur').text('');
 			for(var i = 0 ; i < player.cards.length ; i++)
 				addCard('ZoneCartesJoueur', player.cards[i]);
@@ -86,8 +121,19 @@ function initPlayers(){
 		success: function(data) {
 			players = data;
 			$('#ZoneCartesCroupier').text('');
-			for(var i = 0 ; i < players[0].cards.length ; i++)
+			for(var i = 0 ; i < players[0].cards.length -1 ; i++)
 				addCard('ZoneCartesCroupier', players[0].cards[i]);
+			//Update other players
+			$('#zoneAutresJoueur').text('');
+			for(var j=1 ; j<players.length ; j++)
+			{
+				if(players[j].id != player.id)
+				{
+					$('#zoneAutresJoueur').append('<div id="joueur_'+players[j].id+'"></div>');
+					for(var i = 0 ; i < players[j].cards.length ; i++)
+						addCard('joueur-'+players[j].id, players[0].cards[i]);
+				}
+			}
 		},
 		error: function() {
 			alert('La requête n\'a pas abouti'); 
@@ -102,25 +148,28 @@ function initPlayers(){
 *
 */
 function doAction(data){
-	$.ajax({
-		type: 'GET', // Ou Post
-		url: "/play/"+ getRoom() + "/actions",
-		data: "id=" + data.id + "&actions=" + data.action,
-		dataType: 'json', // Ou text, ou html
-		success: function(data) {
-			player = data; 
-			$('#ZoneCartesJoueur').text('');
-			alert(player.cards.length);
-			for(var i = 0 ; i < player.cards.length ; i++)
-				addCard('ZoneCartesJoueur', player.cards[i]);
-		},
-		error: function() {
-			alert('La requête n\'a pas abouti'); 
-		}
-	});
+	if(player.bet != 0  && player.canPlay)
+	{
+		$.ajax({
+			type: 'GET', // Ou Post
+			url: "/play/"+ getRoom() + "/actions",
+			data: "id=" + data.id + "&actions=" + data.action,
+			dataType: 'json', // Ou text, ou html
+			success: function(data) {
+				player = data; 
+				displayPlayerInfo() ;
+				
+			},
+			error: function() {
+				alert('La requête n\'a pas abouti'); 
+			}
+		});
+	}
+	
 }
 
 function doBet(data){
+
 	$.ajax({
 		type: 'GET', // Ou Post
 		url: "/play/"+ getRoom() + "/bet",
@@ -128,6 +177,7 @@ function doBet(data){
 		dataType: 'json', // Ou text, ou html
 		success: function(data) {
 			player = data; 
+			displayPlayerInfo();
 		},
 		error: function() {
 			alert('La requête n\'a pas abouti'); 

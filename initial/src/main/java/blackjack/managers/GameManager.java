@@ -38,7 +38,6 @@ public class GameManager extends HashMap<String, Game> {
         game.setPlayers(new ArrayList<Player>());
         //Correspond au croupier
         game.getPlayers().add(newPlayer());
-        game.getPlayers().get(0).getCards().add(getCard());
 
         games.put(roomName, game);
     }
@@ -48,6 +47,8 @@ public class GameManager extends HashMap<String, Game> {
         //TODO vérifier si la partie est terminer
         Player player = new Player();
         player.setId(String.valueOf(playerCounter.incrementAndGet()));
+        player.getCards().add(getCard());
+        player.getCards().add(getCard());
         return player ;
     }
 
@@ -83,6 +84,7 @@ public class GameManager extends HashMap<String, Game> {
         {
             newGame(roomName);
         }
+        
         games.get(roomName).getPlayers().add(player);
 
         return player ;
@@ -104,15 +106,15 @@ public class GameManager extends HashMap<String, Game> {
         //Mise à jour de l'état du joueur si il n'a pas d'état
         if(!finish && player.getEtat().equals(PlayerEtat.NONE)){
             if(PlayerEtat.Card.equals(action)){
-                doCard(player);
+                doCard(roomName, playerID);
             } else if(PlayerEtat.Split.equals(action)){
-                doSplit(player);
+                doSplit(roomName, playerID);
             } else if(PlayerEtat.Abort.equals(action)){
-                doAbort(player);
+                doAbort(roomName, playerID);
             } else if(PlayerEtat.Stop.equals(action)){
-                doStop(player);
+                doStop(roomName, playerID);
             } else if(PlayerEtat.Double.equals(action)) {
-                doDouble(player);
+                doDouble(roomName, playerID);
             }
         }
 
@@ -122,15 +124,16 @@ public class GameManager extends HashMap<String, Game> {
         if(isEndOfGame(roomName)){
             endOfGame(roomName);
         }
-        return player;
+        return getPlayer(roomName, playerID);
     }
 
     public Player playerBet(String roomName, String playerID, float bet){
         Player player = getPlayer(roomName, playerID);
         if(player != null && bet > 0 && player.getBet() == 0){
             player.setBet(bet);
+            player.setCanPlay(true);
         }
-        return player;
+        return getPlayer(roomName, playerID);
     }
 
     private boolean isFinish(long time){
@@ -139,47 +142,52 @@ public class GameManager extends HashMap<String, Game> {
         return false;
     }
 
-    private void tourCroupier(Player croupier){
-        if(croupier.getScore() < 17){
-            croupier.getCards().add(this.getCard());
-        } else {
-            croupier.setEtat(PlayerEtat.Stop);
+    private void tourCroupier(String roomName){
+    	System.out.println("passe");
+    	
+    	while(getPlayers(roomName).get(0).getScore() <= 16){
+    		getPlayers(roomName).get(0).getCards().add(this.getCard());
+        }
+    	getPlayers(roomName).get(0).setEtat(PlayerEtat.Stop);
+        
+    }
+
+    private void doCard(String roomName, String playerID){
+    	getPlayer(roomName, playerID).setEtat(PlayerEtat.Card);
+    	getPlayer(roomName, playerID).getCards().add(this.getCard());
+        if(getPlayer(roomName, playerID).getScore() == 21) {
+        	System.out.println("stop");
+           doStop(roomName, playerID);
+        } else if(getPlayer(roomName, playerID).getScore() > 21){
+        	System.out.println("abort");
+            doAbort(roomName, playerID);
         }
     }
 
-    private void doCard(Player player){
-        player.setEtat(PlayerEtat.Card);
-        player.getCards().add(this.getCard());
-        if(player.getScore() == 21) {
-            player.setEtat(PlayerEtat.Stop);
-        } else if(player.getScore() > 21){
-            player.setEtat(PlayerEtat.Abort);
-        }
-    }
-
-    private void doSplit(Player player){
-        if(player.havePair()){
-            player.setEtat(PlayerEtat.Split);
+    private void doSplit(String roomName, String playerID){
+        if(getPlayer(roomName, playerID).havePair()){
+        	getPlayer(roomName, playerID).setEtat(PlayerEtat.Split);
             //TODO séparer en 2 le tas du joueurs
         }
     }
 
-    private void doStop(Player player){
-        player.setEtat(PlayerEtat.Stop);
-        player.setCanPlay(false);
+    private void doStop(String roomName, String playerID){
+    	getPlayer(roomName, playerID).setEtat(PlayerEtat.Stop);
+    	System.out.println(getPlayer(roomName, playerID).getEtat().name());
+    	getPlayer(roomName, playerID).setCanPlay(false);
     }
 
-    private void doAbort(Player player){
-        if(player.getScore() <= 21) {
-            doStop(player);
+    private void doAbort(String roomName, String playerID){
+        if(getPlayer(roomName, playerID).getScore() <= 21) {
+            doStop(roomName, playerID);
         }
         else {
-            player.setEtat(PlayerEtat.Abort);
+        	getPlayer(roomName, playerID).setEtat(PlayerEtat.Abort);
         }
     }
 
-    private void doDouble(Player player){
-        player.setEtat(PlayerEtat.Double);
+    private void doDouble(String roomName, String playerID){
+    	getPlayer(roomName, playerID).setEtat(PlayerEtat.Double);
         //TODO VOIR RÈGLE BLACKJACK
     }
 
@@ -198,7 +206,6 @@ public class GameManager extends HashMap<String, Game> {
     }
 
     private void endOfRound(String roomName){
-        tourCroupier(getPlayers(roomName).get(0));
 
         //mise à jours des états des joueurs sauf croupier à NONE en fonction de leurs états
         PlayerEtat etatJoueur;
@@ -215,7 +222,7 @@ public class GameManager extends HashMap<String, Game> {
     private boolean isEndOfGame(String roomName){
         //Fin du jeu = tous les joueurs ont arréter de jouer (etat STOP ou ABORT), croupier inclus
         PlayerEtat etatJoueur;
-        for(int i = 0 ; i < getPlayers(roomName).size() ; i++){
+        for(int i = 1 ; i < getPlayers(roomName).size() ; i++){
             etatJoueur = getPlayers(roomName).get(i).getEtat();
             if(!PlayerEtat.Abort.equals(etatJoueur) || !PlayerEtat.Stop.equals(etatJoueur))
                 return false;
@@ -225,6 +232,7 @@ public class GameManager extends HashMap<String, Game> {
 
     private void endOfGame(String roomName){
         //TODO statistique partie
+        tourCroupier(roomName);
 
         Player player;
         float scorePlayer;

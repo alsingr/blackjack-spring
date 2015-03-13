@@ -27,6 +27,7 @@ public class Player {
     }
 
     public PlayerEtat getEtat() {
+    	
         return etat;
     }
 
