@@ -88,9 +88,9 @@ public class GameManager extends HashMap<String, Game> {
 
     }
 
-    public ActionResult doAction(String actionName, String playerID, String roomName){
+    public Player doAction(String actionName, String playerID, String roomName){
         Player player = getPlayer(roomName, playerID);
-        ActionValue action = ActionValue.valueOf(actionName);
+        PlayerEtat action = PlayerEtat.valueOf(actionName);
         if(action == null && player == null)
             return null;
 
@@ -101,16 +101,16 @@ public class GameManager extends HashMap<String, Game> {
         boolean finish = isFinish(new Date().getTime());
 
         //Mise à jour de l'état du joueur si il n'a pas d'état
-        if(!finish && player.getEtat().equals(ActionValue.NONE)){
-            if(ActionValue.Card.equals(action)){
+        if(!finish && player.getEtat().equals(PlayerEtat.NONE)){
+            if(PlayerEtat.Card.equals(action)){
                 doCard(player);
-            } else if(ActionValue.Split.equals(action)){
+            } else if(PlayerEtat.Split.equals(action)){
                 doSplit(player);
-            } else if(ActionValue.Abort.equals(action)){
+            } else if(PlayerEtat.Abort.equals(action)){
                 doAbort(player);
-            } else if(ActionValue.Stop.equals(action)){
+            } else if(PlayerEtat.Stop.equals(action)){
                 doStop(player);
-            } else if(ActionValue.Double.equals(action)) {
+            } else if(PlayerEtat.Double.equals(action)) {
                 doDouble(player);
             }
         }
@@ -119,9 +119,9 @@ public class GameManager extends HashMap<String, Game> {
             endOfRound(roomName);
         }
         if(isEndOfGame(roomName)){
-            endOfGame();
+            endOfGame(roomName);
         }
-        return null;
+        return player;
     }
 
     public Player playerBet(String roomName, String playerID, float bet){
@@ -142,29 +142,29 @@ public class GameManager extends HashMap<String, Game> {
         if(croupier.getScore() < 17){
             croupier.getCards().add(this.getCard());
         } else {
-            croupier.setEtat(ActionValue.Stop);
+            croupier.setEtat(PlayerEtat.Stop);
         }
     }
 
     private void doCard(Player player){
-        player.setEtat(ActionValue.Card);
+        player.setEtat(PlayerEtat.Card);
         player.getCards().add(this.getCard());
         if(player.getScore() == 21) {
-            player.setEtat(ActionValue.Stop);
+            player.setEtat(PlayerEtat.Stop);
         } else if(player.getScore() > 21){
-            player.setEtat(ActionValue.Abort);
+            player.setEtat(PlayerEtat.Abort);
         }
     }
 
     private void doSplit(Player player){
         if(player.havePair()){
-            player.setEtat(ActionValue.Split);
+            player.setEtat(PlayerEtat.Split);
             //TODO séparer en 2 le tas du joueurs
         }
     }
 
     private void doStop(Player player){
-        player.setEtat(ActionValue.Stop);
+        player.setEtat(PlayerEtat.Stop);
         player.setCanPlay(false);
     }
 
@@ -173,12 +173,12 @@ public class GameManager extends HashMap<String, Game> {
             doStop(player);
         }
         else {
-            player.setEtat(ActionValue.Abort);
+            player.setEtat(PlayerEtat.Abort);
         }
     }
 
     private void doDouble(Player player){
-        player.setEtat(ActionValue.Double);
+        player.setEtat(PlayerEtat.Double);
         //TODO VOIR RÈGLE BLACKJACK
     }
 
@@ -188,9 +188,9 @@ public class GameManager extends HashMap<String, Game> {
 
     private boolean isEndOfRound(String roomName, boolean finish){
         for(int i = 1 ; i < getPlayers(roomName).size() ; i++){
-            if(finish && getPlayers(roomName).get(i).getEtat().equals(ActionValue.NONE))
-                getPlayers(roomName).get(i).setEtat(ActionValue.Stop);
-            else if(!finish && getPlayers(roomName).get(i).getEtat().equals(ActionValue.NONE))
+            if(finish && getPlayers(roomName).get(i).getEtat().equals(PlayerEtat.NONE))
+                getPlayers(roomName).get(i).setEtat(PlayerEtat.Stop);
+            else if(!finish && getPlayers(roomName).get(i).getEtat().equals(PlayerEtat.NONE))
                 return false;
         }
         return true;
@@ -200,11 +200,11 @@ public class GameManager extends HashMap<String, Game> {
         tourCroupier(getPlayers(roomName).get(0));
 
         //mise à jours des états des joueurs sauf croupier à NONE en fonction de leurs états
-        ActionValue etatJoueur;
+        PlayerEtat etatJoueur;
         for(int i = 1 ; i < getPlayers(roomName).size() ; i++){
             etatJoueur = getPlayers(roomName).get(i).getEtat();
-            if(!ActionValue.Abort.equals(etatJoueur) || !ActionValue.Stop.equals(etatJoueur))
-                getPlayers(roomName).get(i).setEtat(ActionValue.NONE);
+            if(!PlayerEtat.Abort.equals(etatJoueur) || !PlayerEtat.Stop.equals(etatJoueur))
+                getPlayers(roomName).get(i).setEtat(PlayerEtat.NONE);
         }
 
         //mise à jours du temps
@@ -213,24 +213,37 @@ public class GameManager extends HashMap<String, Game> {
 
     private boolean isEndOfGame(String roomName){
         //Fin du jeu = tous les joueurs ont arréter de jouer (etat STOP ou ABORT), croupier inclus
-        ActionValue etatJoueur;
+        PlayerEtat etatJoueur;
         for(int i = 0 ; i < getPlayers(roomName).size() ; i++){
             etatJoueur = getPlayers(roomName).get(i).getEtat();
-            if(!ActionValue.Abort.equals(etatJoueur) || !ActionValue.Stop.equals(etatJoueur))
+            if(!PlayerEtat.Abort.equals(etatJoueur) || !PlayerEtat.Stop.equals(etatJoueur))
                 return false;
         }
         return true;
     }
 
-    private void endOfGame(){
+    private void endOfGame(String roomName){
         //TODO statistique partie
 
-        //TODO mise à jours argent joueur
-
-        //TODO remise à zéro des joueurs
-
-        //TODO redirection vers la page de résultat du jeux
+        Player player;
+        float scorePlayer;
+        Player croupier = getPlayers(roomName).get(0);
+        for(int i = 1 ; i < getPlayers(roomName).size() ; i++){
+            player = getPlayers(roomName).get(i);
+            scorePlayer = player.getScore();
+            if(scorePlayer == 21 || scorePlayer > croupier.getScore() && scorePlayer < 21){
+                player.addGain(player.getBet());
+                croupier.addGain(-player.getBet());
+            } else {
+                player.addGain(-player.getBet());
+                croupier.addGain(player.getBet());
+            }
+            player.init();
+        }
+        croupier.init();
     }
+
+
 
 
     private  <T extends Enum<?>> T randomEnum(Class<T> c){

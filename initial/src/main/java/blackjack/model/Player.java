@@ -11,25 +11,26 @@ import java.util.List;
 public class Player {
 
     private String id ;
-    private int position ;
-    private long timeout ;
     private boolean canPlay ;
     private int score ;
     private float bet ;
     private List<Card> cards ;
+    private float gain;
 
-    private ActionValue etat;
+    private String message;
+
+    private PlayerEtat etat;
 
     public Player(){
         cards = new ArrayList<>();
-        etat = ActionValue.NONE;
+        etat = PlayerEtat.NONE;
     }
 
-    public ActionValue getEtat() {
+    public PlayerEtat getEtat() {
         return etat;
     }
 
-    public void setEtat(ActionValue etat) {
+    public void setEtat(PlayerEtat etat) {
         this.etat = etat;
     }
 
@@ -76,20 +77,13 @@ public class Player {
         this.id = id;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public long getTimeout() {
-        return timeout;
-    }
-
-    public void setTimeout(long timeout) {
-        this.timeout = timeout;
+    public void init(){
+        setBet(0);
+        setCanPlay(true);
+        setCards(new ArrayList<Card>());
+        setEtat(PlayerEtat.NONE);
+        setMessage(null);
+        setScore(0);
     }
 
     public boolean isCanPlay() {
@@ -101,7 +95,7 @@ public class Player {
     }
 
     public int getScore() {
-        return score;
+        return calculateScore();
     }
 
     public void setScore(int score) {
@@ -123,4 +117,22 @@ public class Player {
     public void setCards(List<Card> cards) {
         this.cards = cards;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public float getGain() {
+        return gain;
+    }
+
+    public void setGain(float gain) {
+        this.gain = gain;
+    }
+
+    public void addGain(float gain) { this.gain += gain; }
 }
