@@ -30,6 +30,7 @@ public class GameService {
     List<Player> players(@PathVariable String room)
     {
         System.out.println("\n[URL]" + "/play/" + room + "/players");
+        //System.out.println(gameManager.getPlayers(room).size());
         return gameManager.getPlayers(room);
     }
 

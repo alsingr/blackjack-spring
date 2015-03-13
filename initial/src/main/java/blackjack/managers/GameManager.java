@@ -37,7 +37,8 @@ public class GameManager extends HashMap<String, Game> {
         game.setId(String.valueOf(gameCounter.incrementAndGet()));
         game.setPlayers(new ArrayList<Player>());
         //Correspond au croupier
-        newPlayer();
+        game.getPlayers().add(newPlayer());
+        game.getPlayers().get(0).getCards().add(getCard());
 
         games.put(roomName, game);
     }

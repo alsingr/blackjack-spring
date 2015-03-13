@@ -1,7 +1,24 @@
 
 var player;
-var players = [];
+var players ;
 $(document).ready(Onload);
+
+
+
+
+
+
+
+
+function addCard(id, card){
+	var cardName = card.sign + '_' + card.value + '.png';
+	alert(cardName);
+	alert('#' + id);
+	$("#" + id).append('<img th:src="@{/img/' + cardName + '}" src="../img/' + cardName + '" class="uneCarte">');
+}
+
+
+
 
 function Onload ()
 {
@@ -21,10 +38,9 @@ function Onload ()
 					bet: 150
 				});
 			}
-
-			launchQuery(myURL);
 		});
 	});
+
 }
 
 function initPlayer(){
@@ -33,8 +49,10 @@ function initPlayer(){
 		url: "/play/"+ getRoom() + "/subscribe",
 		dataType: 'json', // Ou text, ou html
 		success: function(data) {
-			alert(""+data);
-			player = data; 
+			player = data;
+			initPlayers();
+
+
 		},
 		error: function() {
 			alert('La requête n\'a pas abouti'); 
@@ -49,8 +67,10 @@ function majPlayer(){
 		data: 'id=' + player.id,
 		dataType: 'json', // Ou text, ou html
 		success: function(data) {
-			alert(""+data);
 			player = data; 
+			$('#ZoneCartesJoueur').text('');
+			for(var i = 0 ; i < player.cards.length ; i++)
+				addCard('ZoneCartesJoueur', player.cards[i]);
 		},
 		error: function() {
 			alert('La requête n\'a pas abouti'); 
@@ -64,8 +84,10 @@ function initPlayers(){
 		url: "/play/"+ getRoom() + "/players",
 		dataType: 'json', // Ou text, ou html
 		success: function(data) {
-			alert(""+data);
-			players = data; 
+			players = data;
+			$('#ZoneCartesCroupier').text('');
+			for(var i = 0 ; i < players[0].cards.length ; i++)
+				addCard('ZoneCartesCroupier', players[0].cards[i]);
 		},
 		error: function() {
 			alert('La requête n\'a pas abouti'); 
@@ -86,23 +108,11 @@ function doAction(data){
 		data: "id=" + data.id + "&actions=" + data.action,
 		dataType: 'json', // Ou text, ou html
 		success: function(data) {
-			alert(""+data);
 			player = data; 
-		},
-		error: function() {
-			alert('La requête n\'a pas abouti'); 
-		}
-	});
-}
-function doBet(data){
-	$.ajax({
-		type: 'GET', // Ou Post
-		url: "/play/"+ getRoom() + "/bet",
-		data: "id=" + data.id + "&bet=" + data.bet,
-		dataType: 'json', // Ou text, ou html
-		success: function(data) {
-			alert(""+data);
-			player = data; 
+			$('#ZoneCartesJoueur').text('');
+			alert(player.cards.length);
+			for(var i = 0 ; i < player.cards.length ; i++)
+				addCard('ZoneCartesJoueur', player.cards[i]);
 		},
 		error: function() {
 			alert('La requête n\'a pas abouti'); 
@@ -110,14 +120,14 @@ function doBet(data){
 	});
 }
 
-function launchQuery(myURL) {
+function doBet(data){
 	$.ajax({
 		type: 'GET', // Ou Post
-		url: myURL,
-		data: 'PARAMETER=' + 'VALUE' + '&PARAMETER2=' + 'VALUE',
+		url: "/play/"+ getRoom() + "/bet",
+		data: "id=" + data.id + "&bet=" + data.bet,
 		dataType: 'json', // Ou text, ou html
 		success: function(data) {
-			alert(""+data); 
+			player = data; 
 		},
 		error: function() {
 			alert('La requête n\'a pas abouti'); 
@@ -131,6 +141,5 @@ function getRoom(){
 	var room = tab[1].split("/")[0];
 	return room;
 }
-function click() {
 
-}
+
