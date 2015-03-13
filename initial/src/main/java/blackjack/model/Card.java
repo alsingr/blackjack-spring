@@ -5,7 +5,7 @@ package blackjack.model;
  * Card
  *
  * */
-public class Card {
+public class Card implements ItemValue{
     private SignOfCard sign ;
     private ValueOfCard value ;
     private int score ;
