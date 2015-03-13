@@ -6,6 +6,12 @@
 </head>
 <body>
 <p th:text="'Hello, ' + ${name} + '!'" />
+<input type="button" value="Start" onClick="newGame()"/>
 
+<script>
+function newGame() {
+ window.location.href+="/room";
+}
+</script>
 </body>
 </html>

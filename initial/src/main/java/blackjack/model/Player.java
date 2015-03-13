@@ -22,8 +22,8 @@ public class Player {
     private PlayerEtat etat;
 
     public Player(){
-        cards = new ArrayList<>();
-        etat = PlayerEtat.NONE;
+        cards = new ArrayList<Card>();
+        etat = ActionValue.NONE;
     }
 
     public PlayerEtat getEtat() {

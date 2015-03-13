@@ -22,7 +22,7 @@ public class GameManager extends HashMap<String, Game> {
     private int timeToPlay = 60 * 1000; // temps de jeu : 1 min
     private Long finishTimeRound; // Temps de fin du round
 
-    HashMap<String, Game> games = new HashMap<>();
+    HashMap<String, Game> games = new HashMap<String, Game>();
     private int indexOfPlayerWhoCanPlay;
 
 
